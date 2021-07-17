@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react'
 import { useField } from '@unform/core'
-import { Container } from './styles'
+import { Container, Error } from './styles'
+import { FiAlertCircle } from 'react-icons/fi'
 
 interface Props {
   name: string
@@ -31,12 +32,16 @@ export const Input = ({ name, label, ...rest }: InputProps) => {
   }, [fieldName, registerField])
 
   return (
-    <Container>
+    <Container isErrored={!!error}>
       {label && <label htmlFor={fieldName}>{label}</label>}
 
       <input id={fieldName} ref={inputRef} defaultValue={defaultValue} {...rest} />
 
-      {error && <span>{error}</span>}
+      {error && (
+        <Error title={error}>
+          <FiAlertCircle color='#c53030' size={20} />
+        </Error>
+      )}
     </Container>
   )
 }

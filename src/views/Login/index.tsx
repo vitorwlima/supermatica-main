@@ -42,8 +42,8 @@ const Login = () => {
       <LoginSection>
         <h1>FAÇA SEU LOGIN</h1>
         <Form ref={formRef} onSubmit={handleLogin}>
-          <Input name='email' type='text' label='Insira seu e-mail:' />
-          <Input name='password' type='password' label='Insira sua senha:' />
+          <Input name='email' type='text' placeholder='Insira seu e-mail:' />
+          <Input name='password' type='password' placeholder='Insira sua senha:' />
           <Button type='submit'>ENTRAR</Button>
           <Button variant='nobackground' className='forgotPasswordBtn'>
             Esqueci a senha
