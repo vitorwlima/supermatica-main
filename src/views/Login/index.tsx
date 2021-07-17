@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { Form } from '@unform/web'
 import { SubmitHandler, FormHandles } from '@unform/core'
-import { useRef } from 'react'
+import * as Yup from 'yup'
+
 import { Button, Input } from '../../components'
 import { Container, LoginSection, LogoSection } from './styles'
 import logo from '../../assets/logo.png'
+import { getValidationErrors } from '../../utils'
 
 interface IFormData {
   email: string
@@ -14,8 +16,25 @@ interface IFormData {
 const Login = () => {
   const formRef = useRef<FormHandles>(null)
 
-  const handleLogin: SubmitHandler<IFormData> = data => {
-    console.log(data)
+  const handleLogin: SubmitHandler<IFormData> = async data => {
+    try {
+      formRef.current?.setErrors({})
+
+      const schema = Yup.object().shape({
+        email: Yup.string().email('Digite um email válido.').required('Insira o seu email.'),
+        password: Yup.string().required('Insira a sua senha.'),
+      })
+
+      await schema.validate(data, { abortEarly: false })
+    } catch (error) {
+      if (error instanceof Yup.ValidationError) {
+        const errors = getValidationErrors(error)
+
+        formRef.current?.setErrors(errors)
+
+        return
+      }
+    }
   }
 
   return (
