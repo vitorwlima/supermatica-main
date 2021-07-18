@@ -15,7 +15,7 @@ export const MenuButton = ({ children, disabled, type, className, path }: Button
   const history = useHistory()
 
   useEffect(() => {
-    if (window.location.pathname.includes(path) || (path === '/conteudos' && window.location.pathname === '/')) {
+    if (window.location.pathname === path) {
       setIsActive(true)
     }
   }, [path])

@@ -17,6 +17,7 @@ export const Container = styled.div<IContainerProps>`
   position: relative;
   transition: 1s;
   transform: ${props => (props.isSidebarHidden ? 'translateX(-100%)' : 'none')};
+  z-index: 10;
 
   .sidebarButton {
     position: absolute;

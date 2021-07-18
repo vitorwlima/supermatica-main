@@ -42,7 +42,7 @@ export const Sidebar = ({ setSidebarWidth, setIsSidebarHidden, isSidebarHidden }
       </div>
       <div className='allButtons'>
         <div className='firstButtons'>
-          <MenuButton path='/conteudos'>
+          <MenuButton path='/'>
             <ConteudosIcon />
             Conteúdos
           </MenuButton>

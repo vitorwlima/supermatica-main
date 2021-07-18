@@ -27,7 +27,7 @@ export const Container = styled.div<IContainerProps>`
   }
 
   @media ${deviceMaxWidth.laptop} {
-    display: ${props => (!props.isSidebarHidden ? 'none' : 'flex')};
+    padding-left: 1rem;
   }
 `
 
