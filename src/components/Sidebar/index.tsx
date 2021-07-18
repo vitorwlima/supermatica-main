@@ -1,39 +1,18 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useState } from 'react'
 import { Container } from './styles'
 import logo from '../../assets/logo.png'
 import { ContaIcon, ContatoIcon, ConteudosIcon, FormulasIcon, SidebarIcon, SimuladosIcon } from './styles'
 import { Button, MenuButton } from '../'
 
-interface ISidebarProps {
-  setSidebarWidth: React.Dispatch<React.SetStateAction<number>>
-  setIsSidebarHidden: React.Dispatch<React.SetStateAction<boolean>>
-  isSidebarHidden: boolean
-}
-
-export const Sidebar = ({ setSidebarWidth, setIsSidebarHidden, isSidebarHidden }: ISidebarProps) => {
-  const sidebarRef = useRef<any>(null)
+export const Sidebar = () => {
+  const [isSidebarHidden, setIsSidebarHidden] = useState(true)
 
   const handleSidebarInteraction = () => {
     setIsSidebarHidden(!isSidebarHidden)
   }
 
-  useEffect(() => {
-    const resize = () => {
-      if (sidebarRef && sidebarRef.current && sidebarRef.current.offsetWidth) {
-        setSidebarWidth(sidebarRef.current.offsetWidth)
-      }
-    }
-    resize()
-
-    window.addEventListener('resize', resize)
-
-    return () => {
-      window.removeEventListener('resize', resize)
-    }
-  }, [sidebarRef, setSidebarWidth])
-
   return (
-    <Container isSidebarHidden={isSidebarHidden} ref={sidebarRef}>
+    <Container isSidebarHidden={isSidebarHidden}>
       <Button className='sidebarButton' onClick={handleSidebarInteraction}>
         <SidebarIcon />
       </Button>
@@ -42,25 +21,25 @@ export const Sidebar = ({ setSidebarWidth, setIsSidebarHidden, isSidebarHidden }
       </div>
       <div className='allButtons'>
         <div className='firstButtons'>
-          <MenuButton path='/'>
+          <MenuButton path='/' setIsSidebarHidden={handleSidebarInteraction}>
             <ConteudosIcon />
             Conteúdos
           </MenuButton>
-          <MenuButton path='/formulas'>
+          <MenuButton path='/formulas' setIsSidebarHidden={handleSidebarInteraction}>
             <FormulasIcon />
             Fórmulas
           </MenuButton>
-          <MenuButton path='/simulados'>
+          <MenuButton path='/simulados' setIsSidebarHidden={handleSidebarInteraction}>
             <SimuladosIcon />
             Simulados
           </MenuButton>
         </div>
         <div className='secondButtons'>
-          <MenuButton path='/contato'>
+          <MenuButton path='/contato' setIsSidebarHidden={handleSidebarInteraction}>
             <ContatoIcon />
             Contato
           </MenuButton>
-          <MenuButton path='/conta'>
+          <MenuButton path='/conta' setIsSidebarHidden={handleSidebarInteraction}>
             <ContaIcon />
             Conta
           </MenuButton>

@@ -16,7 +16,6 @@ export const Container = styled.div<IContainerProps>`
   max-width: 16vw;
   position: relative;
   transition: 1s;
-  transform: ${props => (props.isSidebarHidden ? 'translateX(-100%)' : 'none')};
   z-index: 10;
 
   .sidebarButton {
@@ -24,6 +23,7 @@ export const Container = styled.div<IContainerProps>`
     right: -36px;
     background-color: transparent;
     transform: ${props => (!props.isSidebarHidden ? 'rotate(180deg)' : 'none')};
+    display: none;
 
     &:hover {
       background-color: transparent;
@@ -31,6 +31,7 @@ export const Container = styled.div<IContainerProps>`
 
     @media ${deviceMaxWidth.laptop} {
       right: ${props => (props.isSidebarHidden ? '-36px' : '0')};
+      display: block;
     }
   }
 
@@ -59,6 +60,7 @@ export const Container = styled.div<IContainerProps>`
 
   @media ${deviceMaxWidth.laptop} {
     max-width: 100vw;
+    transform: ${props => (props.isSidebarHidden ? 'translateX(-100%)' : 'none')};
     align-items: center;
     position: absolute;
     inset: 0;

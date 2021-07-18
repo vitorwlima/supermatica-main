@@ -1,4 +1,4 @@
-import React, { ReactNode, useState } from 'react'
+import React, { ReactNode } from 'react'
 import { Content, Sidebar, Topbar } from '../'
 import { Container } from './styles'
 
@@ -7,22 +7,13 @@ interface IWrapperProps {
 }
 
 export const Wrapper = ({ children }: IWrapperProps) => {
-  const [sidebarWidth, setSidebarWidth] = useState(0)
-  const [isSidebarHidden, setIsSidebarHidden] = useState(false)
-
-  React.useEffect(() => console.log(sidebarWidth), [sidebarWidth])
-
   return (
     <Container>
-      <Sidebar
-        setSidebarWidth={setSidebarWidth}
-        setIsSidebarHidden={setIsSidebarHidden}
-        isSidebarHidden={isSidebarHidden}
-      />
-      <Topbar sidebarWidth={sidebarWidth} isSidebarHidden={isSidebarHidden} />
-      <Content sidebarWidth={sidebarWidth} isSidebarHidden={isSidebarHidden}>
-        {children}
-      </Content>
+      <Sidebar />
+      <div className='content'>
+        <Topbar />
+        <Content>{children}</Content>
+      </div>
     </Container>
   )
 }

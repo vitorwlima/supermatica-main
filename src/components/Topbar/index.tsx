@@ -7,11 +7,9 @@ import { Container, ContaIcon } from './styles'
 
 interface ITopbarProps {
   children?: ReactNode
-  sidebarWidth: number
-  isSidebarHidden: boolean
 }
 
-export const Topbar = ({ children, sidebarWidth, isSidebarHidden }: ITopbarProps) => {
+export const Topbar = ({ children }: ITopbarProps) => {
   const history = useHistory()
 
   const handleRedirectAccount = useCallback(() => {
@@ -19,7 +17,7 @@ export const Topbar = ({ children, sidebarWidth, isSidebarHidden }: ITopbarProps
   }, [history])
 
   return (
-    <Container sidebarWidth={sidebarWidth} isSidebarHidden={isSidebarHidden}>
+    <Container>
       {children}
       <div className='breadCrumbs'>
         <Button variant='nobackground'>Conteúdos</Button>

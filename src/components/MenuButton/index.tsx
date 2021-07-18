@@ -8,9 +8,10 @@ interface ButtonProps {
   type?: 'button' | 'submit' | 'reset' | undefined
   className?: string
   path: string
+  setIsSidebarHidden: () => void
 }
 
-export const MenuButton = ({ children, disabled, type, className, path }: ButtonProps) => {
+export const MenuButton = ({ children, disabled, type, className, path, setIsSidebarHidden }: ButtonProps) => {
   const [isActive, setIsActive] = useState(false)
   const history = useHistory()
 
@@ -22,6 +23,7 @@ export const MenuButton = ({ children, disabled, type, className, path }: Button
 
   const handleRedirect = () => {
     history.push(path)
+    setIsSidebarHidden()
   }
 
   return (
