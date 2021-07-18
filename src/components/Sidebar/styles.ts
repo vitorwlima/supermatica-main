@@ -59,6 +59,8 @@ export const Container = styled.div<IContainerProps>`
   @media ${deviceMaxWidth.laptop} {
     max-width: 100vw;
     align-items: center;
+    position: absolute;
+    inset: 0;
   }
 `
 

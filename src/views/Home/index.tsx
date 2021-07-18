@@ -1,12 +1,12 @@
 import React from 'react'
 import { Container } from './styles'
-import { Sidebar } from '../../components'
+import { Wrapper } from '../../components'
 
 const Home = () => {
   return (
-    <Container>
-      <Sidebar />
-    </Container>
+    <Wrapper>
+      <Container>oieasoidasodas</Container>
+    </Wrapper>
   )
 }
 

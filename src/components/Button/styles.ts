@@ -13,13 +13,13 @@ export const Container = styled.div<IContainerProps>`
   button {
     padding: 1em;
     border-radius: 0.3em;
-    background-color: ${props => (props.variant === 'default' ? `${colors.primary}` : `${colors.pureWhite}`)};
+    background-color: ${props => (props.variant === 'default' ? `${colors.primary}` : 'transparent')};
     color: ${props => (props.variant === 'default' ? `${colors.lightWhite}` : `${colors.primary}`)};
     cursor: pointer;
     transition: 0.3s;
 
     &:hover {
-      background-color: ${props => (props.variant === 'default' ? `${colors.terciary}` : `${colors.pureWhite}`)};
+      background-color: ${props => (props.variant === 'default' ? `${colors.terciary}` : 'transparent')};
       color: ${props => (props.variant === 'default' ? `${colors.lightWhite}` : `${colors.terciary}`)};
     }
   }
