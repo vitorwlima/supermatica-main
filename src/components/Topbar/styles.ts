@@ -12,7 +12,7 @@ export const Container = styled.div<IContainerProps>`
   background-color: ${colors.lightGray2};
   width: 100%;
   height: 100px;
-  padding: 0 2rem;
+  padding: 0 1rem;
   position: absolute;
   z-index: -1;
   transition: 1s;

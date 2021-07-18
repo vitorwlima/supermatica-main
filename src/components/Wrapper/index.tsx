@@ -1,6 +1,5 @@
 import React, { ReactNode, useState } from 'react'
-import { Sidebar } from '../Sidebar'
-import { Topbar } from '../Topbar'
+import { Content, Sidebar, Topbar } from '../'
 import { Container } from './styles'
 
 interface IWrapperProps {
@@ -21,6 +20,9 @@ export const Wrapper = ({ children }: IWrapperProps) => {
         isSidebarHidden={isSidebarHidden}
       />
       <Topbar sidebarWidth={sidebarWidth} isSidebarHidden={isSidebarHidden} />
+      <Content sidebarWidth={sidebarWidth} isSidebarHidden={isSidebarHidden}>
+        {children}
+      </Content>
     </Container>
   )
 }
