@@ -1,5 +1,5 @@
 import React, { Fragment, lazy, Suspense } from 'react'
-import { Route, Switch, BrowserRouter } from 'react-router-dom'
+import { Route, Switch, BrowserRouter, Redirect } from 'react-router-dom'
 import { Loader } from './components'
 
 const routesConfig = [
@@ -14,6 +14,10 @@ const routesConfig = [
   {
     path: '/contato',
     component: lazy(() => import('./views/Contato')),
+  },
+  {
+    path: '/404',
+    component: lazy(() => import('./views/NotFound')),
   },
 ]
 
@@ -42,6 +46,7 @@ const renderRoutes = (routes: any) =>
               />
             )
           })}
+          <Redirect to='/404' />
         </Switch>
       </BrowserRouter>
     </Suspense>

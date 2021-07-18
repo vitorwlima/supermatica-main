@@ -24,8 +24,7 @@ export const Container = styled.div<IContainerProps>`
 export const Error = styled(Tooltip)`
   position: absolute;
   right: 10px;
-  bottom: 0;
-  transform: translateY(-50%);
+  top: 24px;
 
   svg {
     margin: 0 auto;

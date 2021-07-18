@@ -19,8 +19,7 @@ const Contato = () => {
       formRef.current?.setErrors({})
 
       const schema = Yup.object().shape({
-        email: Yup.string().email('Digite um email válido.').required('Insira o seu email.'),
-        password: Yup.string().required('Insira a sua senha.'),
+        message: Yup.string().required('Insira a sua mensagem.'),
       })
 
       await schema.validate(data, { abortEarly: false })
@@ -45,8 +44,8 @@ const Contato = () => {
             vontade para enviar pelo campo abaixo!
           </p>
         </div>
-        <Form onSubmit={handleSubmit}>
-          <TextArea name='teste' rows={10} />
+        <Form onSubmit={handleSubmit} ref={formRef}>
+          <TextArea name='message' rows={10} />
           <Button type='submit'>Enviar</Button>
         </Form>
       </Container>
