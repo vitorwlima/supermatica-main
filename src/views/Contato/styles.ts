@@ -2,8 +2,6 @@ import styled from 'styled-components'
 import { deviceMaxWidth } from '../../styles/devices'
 
 export const Container = styled.div`
-  padding: 0 4rem;
-
   .contactIntro {
     text-align: center;
     p {

@@ -7,7 +7,7 @@ export const Container = styled.div`
   background-color: ${colors.lightGray2};
   width: 100%;
   height: 100px;
-  padding: 0 1rem;
+  padding: 0 4rem;
   z-index: -1;
   transition: 1s;
 
@@ -15,12 +15,19 @@ export const Container = styled.div`
   justify-content: space-between;
   align-items: center;
 
-  button {
-    color: ${colors.terciary};
+  .breadCrumbs {
+    button {
+      color: ${colors.terciary};
+      padding: 0.5em 1em;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
   }
 
   @media ${deviceMaxWidth.laptop} {
-    padding-left: 1rem;
+    padding: 0 1rem;
   }
 `
 

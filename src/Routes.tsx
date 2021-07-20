@@ -16,6 +16,14 @@ const routesConfig = [
     component: lazy(() => import('./views/Contato')),
   },
   {
+    path: '/exercicios/:slug',
+    component: lazy(() => import('./views/Exercises')),
+  },
+  {
+    path: '/exercicios/:slug/:id',
+    component: lazy(() => import('./views/Exercise')),
+  },
+  {
     path: '/404',
     component: lazy(() => import('./views/NotFound')),
   },

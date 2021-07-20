@@ -1,11 +1,13 @@
 import React from 'react'
 import { Container } from './styles'
-import { Wrapper } from '../../components'
+import { SubjectCard, Wrapper } from '../../components'
 
 const Home = () => {
   return (
     <Wrapper>
-      <Container>aqui vai o conteudooooowdsa dsalkdsa</Container>
+      <Container>
+        <SubjectCard subject='Matemática básica' exercises={10} slug='matematica-basica' />
+      </Container>
     </Wrapper>
   )
 }

@@ -5,9 +5,9 @@ export const Container = styled.div`
   transition: 1s;
   margin-top: 4rem;
   width: 100%;
-  padding: 1rem;
+  padding: 1rem 4rem;
 
   @media ${deviceMaxWidth.laptop} {
-    transform: translateX(0);
+    padding: 1rem;
   }
 `
