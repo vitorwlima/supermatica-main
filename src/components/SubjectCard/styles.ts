@@ -12,6 +12,10 @@ export const Container = styled.div`
   transition: transform 0.4s;
   transform: scale(0.98);
 
+  svg {
+    font-size: 1.25rem;
+  }
+
   &:hover {
     transform: scale(1);
   }

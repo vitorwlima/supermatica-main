@@ -1,6 +1,6 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
-import { Wrapper } from '../../components'
+import { ExerciseCard, Wrapper } from '../../components'
 import { Container } from './styles'
 
 interface IParams {
@@ -12,7 +12,15 @@ const Exercises = () => {
 
   return (
     <Wrapper>
-      <Container>{slug}</Container>
+      <Container>
+        <ExerciseCard
+          exercise={'(UFRGS 2015) - Era uma vez...'}
+          slug={slug}
+          id={'12dsadsadsada856973'}
+          tags={['Produto notável', 'Cálculo exponencial']}
+          alreadySolved
+        />
+      </Container>
     </Wrapper>
   )
 }
