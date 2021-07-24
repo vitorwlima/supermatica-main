@@ -11,7 +11,7 @@ export const Container = styled.div<IContainerProps>`
   align-items: center;
 
   button {
-    padding: 1em;
+    padding: 0.75em 2em;
     border-radius: 0.3em;
     background-color: ${props => (props.variant === 'default' ? `${colors.primary}` : 'transparent')};
     color: ${props => (props.variant === 'default' ? `${colors.lightWhite}` : `${colors.primary}`)};

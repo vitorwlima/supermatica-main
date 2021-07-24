@@ -23,4 +23,8 @@ export default createGlobalStyle`
     outline: none;
     border: none;
   }
+
+  ul, ol {
+    list-style: none;
+  }
 `
