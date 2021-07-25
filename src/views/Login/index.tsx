@@ -72,7 +72,9 @@ const Login = () => {
           </Button>
           <div className='registerSection'>
             <span>Não possui uma conta Supermática?</span>
-            <Button variant='nobackground'>Cadastre-se</Button>
+            <Button variant='nobackground' onClick={() => history.push('/cadastro')}>
+              Cadastre-se
+            </Button>
           </div>
         </Form>
       </LoginSection>

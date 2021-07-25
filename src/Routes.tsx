@@ -12,6 +12,10 @@ const routesConfig = [
     component: lazy(() => import('./views/Login')),
   },
   {
+    path: '/cadastro',
+    component: lazy(() => import('./views/Register')),
+  },
+  {
     path: '/contato',
     component: lazy(() => import('./views/Contato')),
   },
