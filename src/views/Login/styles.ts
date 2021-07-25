@@ -7,7 +7,7 @@ export const Container = styled.div`
 
   @media ${deviceMaxWidth.laptop} {
     flex-direction: column-reverse;
-    height: 100vh;
+    min-height: 100vh;
   }
 `
 
@@ -25,6 +25,10 @@ export const LoginSection = styled.div`
 
     @media ${deviceMaxWidth.tablet} {
       margin-bottom: 48px;
+    }
+
+    @media ${deviceMaxWidth.mobileL} {
+      margin-bottom: 24px;
     }
   }
 
@@ -95,10 +99,12 @@ export const LogoSection = styled.div`
 
     @media ${deviceMaxWidth.tablet} {
       max-width: 80%;
+      max-height: 100px;
     }
 
     @media ${deviceMaxWidth.mobileL} {
       max-width: 100%;
+      max-height: 80px;
     }
   }
 
@@ -106,10 +112,10 @@ export const LogoSection = styled.div`
     height: auto;
     max-width: none;
     width: 100%;
-    padding: 6rem;
+    padding: 3rem;
   }
 
   @media ${deviceMaxWidth.mobileL} {
-    padding: 4rem;
+    padding: 2rem;
   }
 `
