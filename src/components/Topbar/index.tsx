@@ -1,8 +1,6 @@
-import React from 'react'
-import { ReactNode } from 'react'
-import { useCallback } from 'react'
+import React, { useCallback, ReactNode } from 'react'
 import { useHistory } from 'react-router-dom'
-import { Button } from '../Button'
+import { Button } from '../'
 import { Container, ContaIcon } from './styles'
 
 interface ITopbarProps {

@@ -2,11 +2,16 @@ import React, { useRef } from 'react'
 import { Form } from '@unform/web'
 import { SubmitHandler, FormHandles } from '@unform/core'
 import * as Yup from 'yup'
+import { toast } from 'react-toastify'
 
 import { Button, Input } from '../../components'
 import { Container, LoginSection, LogoSection } from './styles'
 import logo from '../../assets/logo.png'
 import { getValidationErrors } from '../../utils'
+import api from '../../services/api'
+import { setAccessToken } from '../../AuthenticationToken'
+import { useHistory } from 'react-router-dom'
+import { useAuth } from '../../hooks/UseAuth'
 
 interface IFormData {
   email: string
@@ -15,8 +20,10 @@ interface IFormData {
 
 const Login = () => {
   const formRef = useRef<FormHandles>(null)
+  const history = useHistory()
+  const { setUser } = useAuth()
 
-  const handleLogin: SubmitHandler<IFormData> = async data => {
+  const handleLogin: SubmitHandler<IFormData> = async formData => {
     try {
       formRef.current?.setErrors({})
 
@@ -25,14 +32,29 @@ const Login = () => {
         password: Yup.string().required('Insira a sua senha.'),
       })
 
-      await schema.validate(data, { abortEarly: false })
+      await schema.validate(formData, { abortEarly: false })
+
+      const { data } = await api.post('/authenticate', { email: formData.email, password: formData.password })
+      setAccessToken(data.token)
+      setUser(data.user)
+      history.push('/')
     } catch (error) {
       if (error instanceof Yup.ValidationError) {
         const errors = getValidationErrors(error)
-
         formRef.current?.setErrors(errors)
-
         return
+      } else {
+        const errorMessage =
+          (error && error.response && error.response.data && error.response.data.error) || 'Ocorreu um erro.'
+        toast.error(errorMessage, {
+          position: 'top-right',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        })
       }
     }
   }
