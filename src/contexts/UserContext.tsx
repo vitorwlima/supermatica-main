@@ -7,9 +7,9 @@ interface IUserContextProviderProps {
 }
 
 interface IUser {
+  _id: string
   name: string
   email: string
-  password: string
   admin: boolean
 }
 
@@ -26,6 +26,7 @@ export const UserContextProvider = ({ children }: IUserContextProviderProps) => 
   useEffect(() => {
     const getUser = async () => {
       const { data } = await api.get('/refresh-token')
+      console.log('data: ', data)
       setAccessToken(data.token)
       setUser(data.user)
     }

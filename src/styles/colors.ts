@@ -1,3 +1,5 @@
+import { shade } from 'polished'
+
 const colors = {
   primary: '#209FF3',
   secondary: '#155F90',
@@ -10,7 +12,8 @@ const colors = {
   pureWhite: '#FFFFFF',
   lightWhite: '#EEEEEE',
   darkWhite: '#F2F2F2',
-  warning: '#C82C0A',
+  warning: '#F32020',
+  warningSecondary: shade(0.2, '#F32020'),
   success: '#20F3A7',
 }
 
