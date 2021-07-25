@@ -11,7 +11,7 @@ import { Container } from './styles'
 import { useCallback } from 'react'
 import api from '../../services/api'
 import { getValidationErrors } from '../../utils'
-import { setAccessToken } from '../../AuthenticationToken'
+import { getAccessToken, setAccessToken } from '../../AuthenticationToken'
 
 interface IFormData {
   name: string
@@ -19,8 +19,10 @@ interface IFormData {
 
 const Account = () => {
   const history = useHistory()
-  const { user } = useAuth()
+  const { user, setUser } = useAuth()
   const formRef = useRef<FormHandles>(null)
+
+  api.defaults.headers['Authorization'] = `Bearer ${getAccessToken()}`
 
   const handleLogout = useCallback(async () => {
     await api.get('/logout')
@@ -39,7 +41,16 @@ const Account = () => {
       await schema.validate(formData, { abortEarly: false })
 
       const { data } = await api.put('/user-name', { name: formData.name })
-      console.log('updateNameData: ', data)
+      setUser(data)
+      toast.success('Nome alterado com sucesso!', {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      })
     } catch (error) {
       if (error instanceof Yup.ValidationError) {
         const errors = getValidationErrors(error)

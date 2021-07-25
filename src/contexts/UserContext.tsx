@@ -26,7 +26,6 @@ export const UserContextProvider = ({ children }: IUserContextProviderProps) => 
   useEffect(() => {
     const getUser = async () => {
       const { data } = await api.get('/refresh-token')
-      console.log('data: ', data)
       setAccessToken(data.token)
       setUser(data.user)
     }
