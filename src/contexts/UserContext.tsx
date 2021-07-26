@@ -30,6 +30,7 @@ export const UserContextProvider = ({ children }: IUserContextProviderProps) => 
       setUser(data.user)
     }
     getUser()
+    setInterval(getUser, 1000 * 60 * 12)
   }, [])
 
   return <UserContext.Provider value={{ user, setUser }}>{children}</UserContext.Provider>
