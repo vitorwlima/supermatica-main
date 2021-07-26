@@ -9,8 +9,6 @@ import { useHistory } from 'react-router-dom'
 
 const Register = () => {
   const history = useHistory()
-
-  const [acceptOffers, setAcceptOffers] = useState(false)
   const [acceptTerms, setAcceptTerms] = useState(false)
 
   return (
@@ -23,10 +21,6 @@ const Register = () => {
           <Input name='password' type='password' label='Insira sua senha:' />
           <Input name='confirmPassword' type='password' label='Confirme sua senha:' />
           <div className='checkInputs'>
-            <CheckInput onClick={() => setAcceptOffers(previous => !previous)} isSelected={acceptOffers}>
-              <div className='circleToMark'></div>
-              <span>Eu aceito receber ofertas do Supermática</span>
-            </CheckInput>
             <CheckInput onClick={() => setAcceptTerms(previous => !previous)} isSelected={acceptTerms}>
               <div className='circleToMark'></div>
               <span>Eu li e aceito os Termos de uso e Política de privacidade do Supermática</span>
