@@ -16,6 +16,10 @@ const routesConfig = [
     component: lazy(() => import('./views/Register')),
   },
   {
+    path: '/confirmar-conta/:token',
+    component: lazy(() => import('./views/AccountConfirm')),
+  },
+  {
     path: '/conta',
     component: lazy(() => import('./views/Account')),
   },
