@@ -78,6 +78,11 @@ export const RegisterSection = styled.div`
 
   .checkInputs {
     margin: 2rem 0;
+
+    .termsError {
+      color: ${colors.warning};
+      font-size: 0.9rem;
+    }
   }
 
   @media ${deviceMaxWidth.laptopL} {

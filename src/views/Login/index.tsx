@@ -42,7 +42,6 @@ const Login = () => {
       if (error instanceof Yup.ValidationError) {
         const errors = getValidationErrors(error)
         formRef.current?.setErrors(errors)
-        return
       } else {
         const errorMessage =
           (error && error.response && error.response.data && error.response.data.error) || 'Ocorreu um erro.'
