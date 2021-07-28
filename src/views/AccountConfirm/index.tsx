@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
 import { setAccessToken } from '../../AuthenticationToken'
 import { Button, Header, Loader } from '../../components'
 import { useAuth } from '../../hooks/UseAuth'
@@ -12,6 +12,7 @@ interface IParams {
 
 const AccountConfirm = () => {
   const { token }: IParams = useParams()
+  const history = useHistory()
   const { setUser } = useAuth()
   const [isLoading, setIsLoading] = useState(true)
   const [confirmationSuccessful, setConfirmationSuccessful] = useState(false)
@@ -19,8 +20,9 @@ const AccountConfirm = () => {
   api.defaults.headers['Authorization'] = `Bearer ${token}`
 
   const handleRedirect = useCallback(() => {
+    history.push('/')
     window.location.reload()
-  }, [])
+  }, [history])
 
   const countdown = useCallback(() => {
     setTimeout(handleRedirect, 5000)
