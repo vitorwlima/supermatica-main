@@ -3,6 +3,7 @@ import { Container } from './styles'
 import logo from '../../assets/logo.png'
 import { ContaIcon, ContatoIcon, ConteudosIcon, FormulasIcon, SidebarIcon, SimuladosIcon } from './styles'
 import { Button, MenuButton } from '../'
+import { Link } from 'react-router-dom'
 
 export const Sidebar = () => {
   const [isSidebarHidden, setIsSidebarHidden] = useState(true)
@@ -16,9 +17,11 @@ export const Sidebar = () => {
       <Button className='sidebarButton' onClick={handleSidebarInteraction}>
         <SidebarIcon />
       </Button>
-      <div className='logoSection'>
-        <img src={logo} alt='Supermática' />
-      </div>
+      <Link to='/conteudos'>
+        <div className='logoSection'>
+          <img src={logo} alt='Supermática' />
+        </div>
+      </Link>
       <div className='allButtons'>
         <div className='firstButtons'>
           <MenuButton path='/conteudos' setIsSidebarHidden={handleSidebarInteraction}>
