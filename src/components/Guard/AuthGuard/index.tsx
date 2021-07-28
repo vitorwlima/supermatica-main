@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react'
 import { Redirect } from 'react-router-dom'
-import { useAuth } from '../../hooks/UseAuth'
+import { useAuth } from '../../../hooks/UseAuth'
 
 interface IAuthGuardProps {
   children: ReactNode
@@ -9,7 +9,7 @@ interface IAuthGuardProps {
 export const AuthGuard = ({ children }: IAuthGuardProps) => {
   const { user } = useAuth()
 
-  if (!user) {
+  if (!user || !user.confirmed) {
     return <Redirect to='/login' />
   }
 

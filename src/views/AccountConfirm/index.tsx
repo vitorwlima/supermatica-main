@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from 'react'
-import { useHistory, useParams } from 'react-router-dom'
+import React, { useCallback, useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
+import { setAccessToken } from '../../AuthenticationToken'
 import { Button, Header, Loader } from '../../components'
+import { useAuth } from '../../hooks/UseAuth'
 import api from '../../services/api'
 import { Container } from './styles'
 
@@ -10,35 +12,27 @@ interface IParams {
 
 const AccountConfirm = () => {
   const { token }: IParams = useParams()
-  const history = useHistory()
+  const { setUser } = useAuth()
   const [isLoading, setIsLoading] = useState(true)
   const [confirmationSuccessful, setConfirmationSuccessful] = useState(false)
-  const [seconds, setSeconds] = useState(6)
 
   api.defaults.headers['Authorization'] = `Bearer ${token}`
 
-  const handleRedirect = () => {
-    if (confirmationSuccessful) {
-      history.push('/')
-    } else {
-      history.push('/login')
-    }
-  }
+  const handleRedirect = useCallback(() => {
+    window.location.reload()
+  }, [])
 
-  const countdown = () => {
-    const countdownInterval = setInterval(() => {
-      setSeconds(seconds - 1)
-      if (seconds === 0) {
-        clearInterval(countdownInterval)
-        handleRedirect()
-      }
-    }, 1000)
-  }
+  const countdown = useCallback(() => {
+    setTimeout(handleRedirect, 5000)
+  }, [handleRedirect])
 
   useEffect(() => {
     const confirmUser = async () => {
       try {
-        await api.put('/confirm')
+        const { data } = await api.put('/confirm')
+        setUser(data.user)
+        setAccessToken(data.token)
+
         setConfirmationSuccessful(true)
         countdown()
       } catch (err) {
@@ -49,7 +43,7 @@ const AccountConfirm = () => {
       }
     }
     confirmUser()
-  }, [])
+  }, [countdown, setUser])
 
   return (
     <Container>
@@ -58,7 +52,7 @@ const AccountConfirm = () => {
       {confirmationSuccessful ? (
         <div className='main'>
           <h2>Sua conta foi confirmada com sucesso!</h2>
-          <p>Você será redirecionado para a plataforma em {seconds} segundos.</p>
+          <p>Você será redirecionado para a plataforma em 5 segundos.</p>
           <Button onClick={handleRedirect}>Ir para a plataforma</Button>
         </div>
       ) : (

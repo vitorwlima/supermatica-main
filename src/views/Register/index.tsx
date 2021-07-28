@@ -12,8 +12,10 @@ import { getValidationErrors } from '../../utils'
 import api from '../../services/api'
 
 interface IFormData {
+  name: string
   email: string
   password: string
+  passwordConfirmation: string
 }
 
 const Register = () => {
@@ -30,7 +32,7 @@ const Register = () => {
       const schema = Yup.object().shape({
         name: Yup.string().required('Insira o seu nome.'),
         email: Yup.string().email('Digite um email válido.').required('Insira o seu email.'),
-        password: Yup.string().required('Insira a sua senha.'),
+        password: Yup.string().required('Insira a sua senha.').min(6, 'Sua senha precisa ter no mínimo 6 caracteres.'),
         passwordConfirmation: Yup.string()
           .required('Confirme a sua senha.')
           .oneOf([Yup.ref('password'), null], 'Confirmação incorreta.'),
@@ -43,6 +45,8 @@ const Register = () => {
         return
       }
 
+      await api.post('/register', { email: formData.email, password: formData.password, name: formData.name })
+
       toast.success('Sua conta foi criada com sucesso, e um email de confirmação foi enviado!', {
         position: 'top-right',
         autoClose: 8000,
@@ -53,7 +57,10 @@ const Register = () => {
         progress: undefined,
       })
 
-      setTimeout(reset, 1000)
+      setTimeout(() => {
+        reset()
+        setAcceptTerms(false)
+      }, 1000)
     } catch (error) {
       if (error instanceof Yup.ValidationError) {
         const errors = getValidationErrors(error)

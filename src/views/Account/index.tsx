@@ -25,10 +25,16 @@ const Account = () => {
   api.defaults.headers['Authorization'] = `Bearer ${getAccessToken()}`
 
   const handleLogout = useCallback(async () => {
-    await api.get('/logout')
-    setAccessToken('')
-    history.push('/login')
-  }, [history])
+    try {
+      await api.get('/logout')
+      setAccessToken('')
+      setUser(undefined)
+
+      history.push('/login')
+    } catch (err) {
+      console.log('Erro ao desconectar: ', err)
+    }
+  }, [setUser, history])
 
   const handleUpdateUserName: SubmitHandler<IFormData> = async formData => {
     try {
