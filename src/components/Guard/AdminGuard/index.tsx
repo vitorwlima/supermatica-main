@@ -6,11 +6,11 @@ interface IAdminProps {
   children: ReactNode
 }
 
-export const AdminGuardd = ({ children }: IAdminProps) => {
+export const AdminGuard = ({ children }: IAdminProps) => {
   const { user } = useAuth()
 
   if (!user || !user.admin) {
-    return <Redirect to='/' />
+    return <Redirect to='/conteudos' />
   }
 
   return <>{children}</>

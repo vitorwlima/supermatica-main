@@ -5,8 +5,8 @@ import { AuthGuard, GuestGuard, Loader } from './components'
 const routesConfig = [
   {
     guard: AuthGuard,
-    path: '/',
-    component: lazy(() => import('./views/Home')),
+    path: '/conteudos',
+    component: lazy(() => import('./views/Conteudos')),
   },
   {
     guard: GuestGuard,
@@ -35,12 +35,12 @@ const routesConfig = [
   },
   {
     guard: AuthGuard,
-    path: '/exercicios/:slug',
-    component: lazy(() => import('./views/Exercises')),
+    path: '/conteudos/:slug',
+    component: lazy(() => import('./views/ExerciseList')),
   },
   {
     guard: AuthGuard,
-    path: '/exercicios/:slug/:id',
+    path: '/conteudos/:slug/:id',
     component: lazy(() => import('./views/Exercise')),
   },
   {

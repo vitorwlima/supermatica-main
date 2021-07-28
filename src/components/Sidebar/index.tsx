@@ -21,7 +21,7 @@ export const Sidebar = () => {
       </div>
       <div className='allButtons'>
         <div className='firstButtons'>
-          <MenuButton path='/' setIsSidebarHidden={handleSidebarInteraction}>
+          <MenuButton path='/conteudos' setIsSidebarHidden={handleSidebarInteraction}>
             <ConteudosIcon />
             Conteúdos
           </MenuButton>

@@ -14,7 +14,7 @@ export const SubjectCard = ({ subject, exercises, slug }: ISubjectCardProps) => 
   const history = useHistory()
 
   const handleRedirect = useCallback(() => {
-    history.push(`/exercicios/${slug}`)
+    history.push(`/conteudos/${slug}`)
   }, [history, slug])
 
   return (

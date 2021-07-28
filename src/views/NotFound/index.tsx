@@ -7,7 +7,7 @@ const NotFound = () => {
   const history = useHistory()
 
   const handleRedirectHome = () => {
-    history.push('/')
+    history.push('/conteudos')
   }
 
   return (

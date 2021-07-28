@@ -7,7 +7,7 @@ interface IParams {
   slug: string
 }
 
-const Exercises = () => {
+const ExerciseList = () => {
   const { slug }: IParams = useParams()
 
   return (
@@ -25,4 +25,4 @@ const Exercises = () => {
   )
 }
 
-export default Exercises
+export default ExerciseList

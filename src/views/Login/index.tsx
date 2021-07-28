@@ -37,7 +37,7 @@ const Login = () => {
       const { data } = await api.post('/authenticate', { email: formData.email, password: formData.password })
       setAccessToken(data.token)
       setUser(data.user)
-      history.push('/')
+      history.push('/conteudos')
     } catch (error) {
       if (error instanceof Yup.ValidationError) {
         const errors = getValidationErrors(error)

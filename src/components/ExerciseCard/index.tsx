@@ -16,7 +16,7 @@ export const ExerciseCard = ({ exercise, tags, alreadySolved, slug, id }: IExerc
   const history = useHistory()
 
   const handleRedirect = useCallback(() => {
-    history.push(`/exercicios/${slug}/${id}`)
+    history.push(`/conteudos/${slug}/${id}`)
   }, [history, slug, id])
 
   return (

@@ -2,7 +2,7 @@ import React from 'react'
 import { Container } from './styles'
 import { SubjectCard, Wrapper } from '../../components'
 
-const Home = () => {
+const Conteudos = () => {
   return (
     <Wrapper>
       <Container>
@@ -12,4 +12,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default Conteudos

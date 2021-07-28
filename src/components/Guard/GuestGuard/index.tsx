@@ -10,7 +10,7 @@ export const GuestGuard = ({ children }: IGuestGuardProps) => {
   const { user } = useAuth()
 
   if (user) {
-    return <Redirect to='/' />
+    return <Redirect to='/conteudos' />
   }
 
   return <>{children}</>

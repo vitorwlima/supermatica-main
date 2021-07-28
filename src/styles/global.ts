@@ -14,7 +14,8 @@ export default createGlobalStyle`
     padding: 0;
     font-family: 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
     font-size: 1rem;
-    background-color: ${colors.pureWhite}
+    background-color: ${colors.pureWhite};
+    color: ${colors.black};
   }
 
   button, input, label, textarea {
