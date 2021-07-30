@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { deviceMaxWidth } from '../../styles/devices'
 
-export const Container = styled.div`
+export const Container = styled.main`
   transition: 1s;
   margin-top: 4rem;
   width: 100%;

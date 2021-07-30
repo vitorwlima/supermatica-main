@@ -16,7 +16,7 @@ export const Container = styled.div<IContainerProps>`
   max-width: 16vw;
   position: relative;
   transition: 1s;
-  z-index: 10;
+  z-index: 999;
 
   .sidebarButton {
     position: absolute;

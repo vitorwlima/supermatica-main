@@ -81,7 +81,7 @@ export const Exercise = ({ question, alternatives, resolution }: IExerciseProps)
         <div className='resolution'>
           <h3>Resolução:</h3>
           <h4>Resposta correta: {rightAnswerLetter}</h4>
-          <Player />
+          <Player url={resolution} />
         </div>
       )}
     </Container>

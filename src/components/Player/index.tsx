@@ -14,22 +14,27 @@ import {
 } from 'react-icons/fa'
 import screenfull from 'screenfull'
 
-import { Container, FooterOverlay, Option, Overlay, PlayerButton } from './styles'
+import { Container, FooterOverlay, Loading, Option, Overlay, PlayerButton } from './styles'
 
-export const Player = () => {
+interface IPlayerProps {
+  url: string
+}
+
+export const Player = ({ url }: IPlayerProps) => {
   const containerRef = useRef<HTMLDivElement>(null)
   const playerRef = useRef<any>(null)
   const inputRangeVolumeRef = useRef<HTMLInputElement>(null)
 
+  const [loading, setLoading] = useState(true)
   const [showControls, setShowControls] = useState(false)
+  const [settingsModalOpen, setSettingsModalOpen] = useState<'volume' | 'speed' | 'quality' | ''>('')
 
   const [isPlaying, setIsPlaying] = useState(false)
   const [progress, setProgress] = useState({ playedSeconds: 0, played: 0, loaded: 0, loadedSeconds: 0 })
   const [totalDuration, setTotalDuration] = useState(0)
-  const [volume, setVolume] = useState(0.5)
+  const [volume, setVolume] = useState(window.innerWidth > 768 ? 0.5 : 1)
   const [currentSpeed, setCurrentSpeed] = useState(1)
-  const [currentQuality, setCurrentQuality] = useState('Automático')
-  const [settingsModalOpen, setSettingsModalOpen] = useState<'volume' | 'speed' | 'quality' | ''>('')
+  const [currentQuality, setCurrentQuality] = useState('360p')
 
   const speeds = [2, 1.5, 1, 0.5]
   const qualities = ['Automático', '1080p', '720p', '540p', '360p']
@@ -110,6 +115,11 @@ export const Player = () => {
     }
   }, [containerRef])
 
+  useEffect(
+    () => console.log(currentQuality === 'Automático' ? url : `${url}?quality=${currentQuality}`),
+    [currentQuality, url]
+  )
+
   return (
     <Container
       isPlaying={isPlaying}
@@ -118,15 +128,19 @@ export const Player = () => {
       isCursorVisible={showControls}
       ref={containerRef}
     >
+      <Loading show={loading}>
+        <div></div>
+      </Loading>
       <ReactPlayer
         className='react-player'
-        url='https://player.vimeo.com/video/556343179?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=186129'
+        url={currentQuality === 'Automático' ? url : `${url}?quality=${currentQuality}`}
         ref={playerRef}
         playing={isPlaying}
         onProgress={prog => setProgress(prog)}
         onDuration={durat => setTotalDuration(durat)}
         volume={volume}
         playbackRate={currentSpeed}
+        onReady={() => setLoading(false)}
       />
       <Overlay onClick={handleOverlayClick} showPlayButton={showControls || !isPlaying}>
         {isPlaying ? <FaPause /> : <FaPlay />}
@@ -143,24 +157,26 @@ export const Player = () => {
           <PlayerButton onClick={handleGoForward}>
             <FaRedo />
           </PlayerButton>
-          <PlayerButton
-            showModal={settingsModalOpen === 'volume'}
-            onMouseEnter={() => setSettingsModalOpen('volume')}
-            onMouseLeave={() => setSettingsModalOpen('')}
-          >
-            <div className='volume-input'>
-              {renderVolumeIcon()}
-              <input
-                ref={inputRangeVolumeRef}
-                type='range'
-                value={volume}
-                onChange={event => setVolume(+event.target.value)}
-                min={0}
-                max={1}
-                step='any'
-              />
-            </div>
-          </PlayerButton>
+          {window.innerWidth > 768 && (
+            <PlayerButton
+              showModal={settingsModalOpen === 'volume'}
+              onMouseEnter={() => setSettingsModalOpen('volume')}
+              onMouseLeave={() => setSettingsModalOpen('')}
+            >
+              <div className='volume-input'>
+                {renderVolumeIcon()}
+                <input
+                  ref={inputRangeVolumeRef}
+                  type='range'
+                  value={volume}
+                  onChange={event => setVolume(+event.target.value)}
+                  min={0}
+                  max={1}
+                  step='any'
+                />
+              </div>
+            </PlayerButton>
+          )}
         </div>
         <div>
           <PlayerButton showModal={settingsModalOpen === 'speed'}>

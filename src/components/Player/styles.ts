@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import colors from '../../styles/colors'
+import { deviceMaxWidth } from '../../styles/devices'
 
 interface IContainerProps {
   isPlaying: boolean
@@ -21,6 +22,10 @@ interface IPlayerButtonProps {
 
 interface IOptionProps {
   isSelected: boolean
+}
+
+interface ILoadingProps {
+  show: boolean
 }
 
 export const Container = styled.div<IContainerProps>`
@@ -59,6 +64,42 @@ export const Overlay = styled.div<IOverlayProps>`
     cursor: pointer;
     opacity: ${props => !props.showPlayButton && 0};
     transition: opacity 0.4s;
+  }
+`
+
+export const Loading = styled.div<ILoadingProps>`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16/9;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #000;
+  z-index: 20;
+  display: ${props => !props.show && 'none'};
+
+  div {
+    width: 60px;
+    height: 60px;
+    background-color: #000;
+    border: 4px solid ${colors.primary};
+    border-bottom: 4px solid transparent;
+    border-radius: 50%;
+
+    animation: rotateLoading 1s infinite;
+  }
+
+  @keyframes rotateLoading {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
   }
 `
 
@@ -103,6 +144,14 @@ export const PlayerButton = styled.button<IPlayerButtonProps>`
   svg {
     font-size: 1.25rem;
     color: ${colors.darkWhite};
+
+    @media ${deviceMaxWidth.mobileL} {
+      font-size: 1rem;
+    }
+
+    @media ${deviceMaxWidth.mobileS} {
+      font-size: 0.8rem;
+    }
   }
 
   &:last-child {
