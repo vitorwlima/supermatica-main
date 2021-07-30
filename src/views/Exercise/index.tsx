@@ -10,6 +10,13 @@ interface IParams {
 
 const Exercise = () => {
   const { slug, id }: IParams = useParams()
+
+  const breadCrumbs = [
+    { label: 'Conteúdos', path: '/conteudos' },
+    { label: 'Matemática Básica', path: '/conteudos/matematica-basica' },
+    { label: 'UFRGS (2020)...' },
+  ]
+
   const alternatives = [
     {
       alternative: 'O CURSO DOS MÓDULOSO CURSO DOS MÓDULOSO CURSO DOS MÓDULOS O CURSO DOS MÓDULOSO CURSO DOS MÓDULOS',
@@ -30,7 +37,7 @@ const Exercise = () => {
   const resolution = 'https://player.vimeo.com/video/556343179'
 
   return (
-    <Wrapper>
+    <Wrapper breadCrumbs={breadCrumbs}>
       <Container>
         <ExerciseComponent
           question='UFRGS (2020) - A concentração de alguns medicamentos no organismo está relacionada com a meia

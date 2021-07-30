@@ -10,8 +10,10 @@ interface IParams {
 const ExerciseList = () => {
   const { slug }: IParams = useParams()
 
+  const breadCrumbs = [{ label: 'Conteúdos', path: '/conteudos' }, { label: 'Matemática Básica' }]
+
   return (
-    <Wrapper>
+    <Wrapper breadCrumbs={breadCrumbs}>
       <Container>
         <ExerciseCard
           exercise={'(UFRGS 2015) - Era uma vez...'}

@@ -22,6 +22,8 @@ const Account = () => {
   const { user, setUser } = useAuth()
   const formRef = useRef<FormHandles>(null)
 
+  const breadCrumbs = [{ label: 'Conta' }]
+
   api.defaults.headers['Authorization'] = `Bearer ${getAccessToken()}`
 
   const handleLogout = useCallback(async () => {
@@ -79,7 +81,7 @@ const Account = () => {
   }
 
   return (
-    <Wrapper>
+    <Wrapper breadCrumbs={breadCrumbs}>
       <Container>
         <div className='emailWrapper'>
           <div>Email:</div>

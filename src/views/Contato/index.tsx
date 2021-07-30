@@ -14,6 +14,8 @@ interface IFormData {
 const Contato = () => {
   const formRef = useRef<FormHandles>(null)
 
+  const breadCrumbs = [{ label: 'Contato' }]
+
   const handleSubmit: SubmitHandler<IFormData> = async data => {
     try {
       formRef.current?.setErrors({})
@@ -35,7 +37,7 @@ const Contato = () => {
   }
 
   return (
-    <Wrapper>
+    <Wrapper breadCrumbs={breadCrumbs}>
       <Container>
         <div className='contactIntro'>
           <h1>ENTRE EM CONTATO</h1>

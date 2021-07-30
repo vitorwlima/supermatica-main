@@ -16,12 +16,40 @@ export const Container = styled.div`
   align-items: center;
 
   .breadCrumbs {
+    display: flex;
+    align-items: center;
+
     button {
       color: ${colors.terciary};
-      padding: 0.5em 1em;
+      padding: 0;
+      display: flex;
+      align-items: center;
+
+      svg {
+        color: ${colors.dark};
+        font-size: 0.75rem;
+        margin-left: 0.5em;
+        margin-right: 0.75em;
+      }
 
       &:hover {
         text-decoration: underline;
+      }
+    }
+
+    div:first-child {
+      button {
+        padding-left: 2em;
+      }
+    }
+
+    div:last-child {
+      button {
+        color: ${colors.dark};
+      }
+
+      svg:last-child {
+        display: none;
       }
     }
   }
