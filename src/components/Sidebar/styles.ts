@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import colors from '../../styles/colors'
-import { FaFlask, FaCalculator, FaBook, FaPhone, FaUser, FaChevronRight } from 'react-icons/fa'
+import { FaFlask, FaCalculator, FaBook, FaPhone, FaUser, FaBars } from 'react-icons/fa'
 import { deviceMaxWidth } from '../../styles/devices'
 
 interface IContainerProps {
@@ -32,9 +32,8 @@ export const Container = styled.div<IContainerProps>`
 
     .sidebarButton {
       position: absolute;
-      right: -36px;
       background-color: transparent;
-      transform: ${props => (!props.isSidebarHidden ? 'rotate(180deg)' : 'none')};
+      transform: ${props => (!props.isSidebarHidden ? 'rotate(90deg)' : 'none')};
       display: none;
 
       &:hover {
@@ -42,7 +41,7 @@ export const Container = styled.div<IContainerProps>`
       }
 
       @media ${deviceMaxWidth.laptop} {
-        right: ${props => (props.isSidebarHidden ? '-36px' : '0')};
+        right: ${props => (props.isSidebarHidden ? '-54px' : '-22px')};
         display: block;
       }
     }
@@ -86,6 +85,6 @@ export const SimuladosIcon = styled(FaBook)``
 export const ContatoIcon = styled(FaPhone)``
 export const ContaIcon = styled(FaUser)``
 
-export const SidebarIcon = styled(FaChevronRight)`
+export const SidebarIcon = styled(FaBars)`
   fill: ${colors.dark};
 `
