@@ -8,62 +8,75 @@ interface IContainerProps {
 }
 
 export const Container = styled.div<IContainerProps>`
-  background-color: ${colors.primary};
-  padding: 1rem;
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
+  width: 100%;
   max-width: 16vw;
-  position: relative;
-  transition: 1s;
-  z-index: 999;
-
-  .sidebarButton {
-    position: absolute;
-    right: -36px;
-    background-color: transparent;
-    transform: ${props => (!props.isSidebarHidden ? 'rotate(180deg)' : 'none')};
-    display: none;
-
-    &:hover {
-      background-color: transparent;
-    }
-
-    @media ${deviceMaxWidth.laptop} {
-      right: ${props => (props.isSidebarHidden ? '-36px' : '0')};
-      display: block;
-    }
-  }
-
-  .logoSection {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    img {
-      width: 75%;
-    }
-  }
-
-  .allButtons {
-    width: fit-content;
-    margin-top: 6rem;
-
-    .firstButtons {
-      margin-bottom: 3rem;
-    }
-  }
 
   @media ${deviceMaxWidth.laptopL} {
     max-width: 20vw;
   }
 
   @media ${deviceMaxWidth.laptop} {
-    max-width: 100vw;
-    transform: ${props => (props.isSidebarHidden ? 'translateX(-100%)' : 'none')};
-    align-items: center;
-    position: absolute;
-    inset: 0;
+    max-width: 0;
+  }
+
+  .container {
+    background-color: ${colors.primary};
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    max-width: 16vw;
+    position: fixed;
+    transition: 1s;
+    z-index: 999;
+
+    .sidebarButton {
+      position: absolute;
+      right: -36px;
+      background-color: transparent;
+      transform: ${props => (!props.isSidebarHidden ? 'rotate(180deg)' : 'none')};
+      display: none;
+
+      &:hover {
+        background-color: transparent;
+      }
+
+      @media ${deviceMaxWidth.laptop} {
+        right: ${props => (props.isSidebarHidden ? '-36px' : '0')};
+        display: block;
+      }
+    }
+
+    .logoSection {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      img {
+        width: 75%;
+      }
+    }
+
+    .allButtons {
+      width: fit-content;
+      margin-top: 6rem;
+
+      .firstButtons {
+        margin-bottom: 3rem;
+      }
+    }
+
+    @media ${deviceMaxWidth.laptopL} {
+      max-width: 20vw;
+    }
+
+    @media ${deviceMaxWidth.laptop} {
+      max-width: 100vw;
+      transform: ${props => (props.isSidebarHidden ? 'translateX(-100%)' : 'none')};
+      align-items: center;
+      position: absolute;
+      inset: 0;
+    }
   }
 `
 
