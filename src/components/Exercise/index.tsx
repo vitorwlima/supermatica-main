@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from 'react'
 import { Button } from '../'
-import { IAlternative } from '../../Interfaces'
+import { IAlternative } from '../../interfaces'
+import { Player } from '../Player'
 import { Alternative, Container } from './styles'
 
 interface IExerciseProps {
@@ -79,8 +80,8 @@ export const Exercise = ({ question, alternatives, resolution }: IExerciseProps)
       {showResolution && (
         <div className='resolution'>
           <h3>Resolução:</h3>
-          <div>Resposta correta: {rightAnswerLetter}</div>
-          <p>{resolution}</p>
+          <h4>Resposta correta: {rightAnswerLetter}</h4>
+          <Player />
         </div>
       )}
     </Container>

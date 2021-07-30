@@ -59,12 +59,14 @@ export const Container = styled.div<IContainerProps>`
   }
 
   .resolution {
+    width: 100%;
+
     h3 {
-      margin-bottom: 1rem;
+      margin-bottom: 0.5rem;
       font-size: 1.25rem;
     }
-    div {
-      font-weight: 700;
+
+    h4 {
       margin-bottom: 1rem;
     }
   }

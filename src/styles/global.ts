@@ -16,6 +16,7 @@ export default createGlobalStyle`
     font-size: 1rem;
     background-color: ${colors.pureWhite};
     color: ${colors.black};
+    overflow-x: hidden;
   }
 
   button, input, label, textarea {
