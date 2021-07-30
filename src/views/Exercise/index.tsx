@@ -11,10 +11,19 @@ interface IParams {
 const Exercise = () => {
   const { slug, id }: IParams = useParams()
   const alternatives = [
-    { alternative: '1', isCorrect: false, _id: '1' },
+    {
+      alternative: 'O CURSO DOS MÓDULOSO CURSO DOS MÓDULOSO CURSO DOS MÓDULOS O CURSO DOS MÓDULOSO CURSO DOS MÓDULOS',
+      isCorrect: false,
+      _id: '1',
+    },
     { alternative: '2', isCorrect: true, _id: '2' },
     { alternative: '3', isCorrect: false, _id: '3' },
-    { alternative: '4', isCorrect: false, _id: '4' },
+    {
+      alternative:
+        'O CURSO DOS MÓDULOSO CURSO DOS MÓDUL OSO CURSO DOS MÓD ULO SO CURSO DOS MÓDULOSO CURSO DOS M Ó D U LOSO CURSO DOS MÓDULO SO CURSO DOS MÓD ULOSO CURSO DOS MÓDULOSO CURSO DOS MÓDULOSO CURSO DOS MÓDULOSO CURSO DOS MÓDULO SO CURSO DOS MÓDULOSO CURSO DOS MÓDULOSO CURSO DOS MÓDULOS',
+      isCorrect: false,
+      _id: '4',
+    },
     { alternative: '5', isCorrect: false, _id: '5' },
   ]
 

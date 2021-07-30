@@ -3,6 +3,8 @@ import colors from '../../styles/colors'
 
 interface IAlternativeProps {
   isSelected: boolean
+  isCorrectAndFinished: boolean
+  isIncorrectAndSelected: boolean
 }
 
 interface IContainerProps {
@@ -65,32 +67,37 @@ export const Container = styled.div<IContainerProps>`
       margin-bottom: 0.5rem;
       font-size: 1.25rem;
     }
-
-    h4 {
-      margin-bottom: 1rem;
-    }
   }
 `
 
 export const Alternative = styled.div<IAlternativeProps>`
   display: flex;
   align-items: center;
-  margin-bottom: 1rem;
   cursor: pointer;
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+  border-radius: 0.3em;
+
+  background-color: ${props => props.isCorrectAndFinished && colors.success};
+  background-color: ${props => props.isIncorrectAndSelected && colors.warningSoft};
 
   .circleToMark {
     width: 20px;
     height: 20px;
+    aspect-ratio: 1;
     border-radius: 50%;
+
     border: 1.5px solid ${colors.black};
     margin-right: 1em;
     transition: 0.2s;
 
     background-color: ${props => props.isSelected && `${colors.primary}`};
+    background-color: ${props => props.isCorrectAndFinished && colors.successSecondary};
+    background-color: ${props => props.isIncorrectAndSelected && colors.warningSoftSecondary};
   }
 
   .alternativeLetter {
-    margin-right: 1rem;
+    margin-right: 0.75rem;
   }
 
   &:hover {

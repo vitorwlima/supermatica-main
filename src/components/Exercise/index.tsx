@@ -15,14 +15,6 @@ export const Exercise = ({ question, alternatives, resolution }: IExerciseProps)
   const [alternativeStatus, setAlternativeStatus] = useState<'initial' | 'correct' | 'incorrect'>('initial')
   const [showResolution, setShowResolution] = useState(false)
 
-  const rightAnswerIndex = alternatives.indexOf(alternatives.find(alternative => alternative.isCorrect)!)
-  const rightAnswerLetter =
-    (rightAnswerIndex === 0 && 'a)') ||
-    (rightAnswerIndex === 1 && 'b)') ||
-    (rightAnswerIndex === 2 && 'c)') ||
-    (rightAnswerIndex === 3 && 'd)') ||
-    (rightAnswerIndex === 4 && 'e)')
-
   const handleFinishQuestion = () => {
     const alternative = alternatives.find(alternative => alternative.alternative === selectedAlternative)
     if (alternative?.isCorrect) {
@@ -46,6 +38,11 @@ export const Exercise = ({ question, alternatives, resolution }: IExerciseProps)
             key={alt._id}
             onClick={alternativeStatus === 'initial' ? () => setSelectedAlternative(alt.alternative) : () => {}}
             isSelected={alt.alternative === selectedAlternative}
+            isCorrectAndFinished={
+              (alternativeStatus === 'correct' && alt.alternative === selectedAlternative) ||
+              (alternativeStatus === 'incorrect' && showResolution && alt.isCorrect)
+            }
+            isIncorrectAndSelected={alternativeStatus === 'incorrect' && selectedAlternative === alt.alternative}
           >
             <div className='circleToMark'></div>
             <span className='alternativeLetter'>
@@ -80,7 +77,6 @@ export const Exercise = ({ question, alternatives, resolution }: IExerciseProps)
       {showResolution && (
         <div className='resolution'>
           <h3>Resolução:</h3>
-          <h4>Resposta correta: {rightAnswerLetter}</h4>
           <Player url={resolution} />
         </div>
       )}

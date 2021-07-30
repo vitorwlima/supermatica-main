@@ -14,7 +14,10 @@ const colors = {
   darkWhite: '#F2F2F2',
   warning: '#F32020',
   warningSecondary: shade(0.2, '#F32020'),
+  warningSoft: '#F54433',
+  warningSoftSecondary: shade(0.2, '#F54433'),
   success: '#20F3A7',
+  successSecondary: shade(0.2, '#20F3A7'),
 }
 
 export default colors
