@@ -41,7 +41,7 @@ export const Topbar = ({ children, breadCrumbs }: ITopbarProps) => {
           </Button>
         ))}
       </div>
-      <Button variant='nobackground' onClick={handleRedirectAccount}>
+      <Button variant='nobackground' onClick={handleRedirectAccount} className='button-account'>
         <ContaIcon />
       </Button>
     </Container>

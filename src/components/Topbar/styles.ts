@@ -52,6 +52,14 @@ export const Container = styled.div`
         display: none;
       }
     }
+
+    @media ${deviceMaxWidth.tablet} {
+      display: none;
+    }
+  }
+
+  @media ${deviceMaxWidth.tablet} {
+    justify-content: flex-end;
   }
 
   @media ${deviceMaxWidth.laptop} {
