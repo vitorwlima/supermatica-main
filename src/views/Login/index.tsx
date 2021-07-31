@@ -66,7 +66,7 @@ const Login = () => {
           <Input name='email' type='text' label='Insira seu e-mail:' />
           <Input name='password' type='password' label='Insira sua senha:' />
           <Button type='submit'>ENTRAR</Button>
-          <Button variant='nobackground' className='forgotPasswordBtn'>
+          <Button variant='nobackground' className='forgotPasswordBtn' type='button'>
             Esqueci a senha
           </Button>
           <div className='registerSection'>
