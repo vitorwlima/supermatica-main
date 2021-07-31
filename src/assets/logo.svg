@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="2359" height="782" viewBox="0 0 2359 782">
+  <defs>
+    <clipPath id="clip-logo-extenso">
+      <rect width="2359" height="782"/>
+    </clipPath>
+  </defs>
+  <g id="logo-extenso" clip-path="url(#clip-logo-extenso)">
+    <g id="Logo" transform="translate(-346.103 -154.551)">
+      <g id="Retângulo_3" data-name="Retângulo 3" transform="translate(346.103 154.551)" fill="#28292a" stroke="#000" stroke-width="1">
+        <rect width="2359" height="782" rx="34" stroke="none"/>
+        <rect x="0.5" y="0.5" width="2358" height="781" rx="33.5" fill="none"/>
+      </g>
+      <g id="logo-letras-linhas" transform="translate(492.312 295.255)">
+        <text id="Supermatica" data-name="Supermatica" transform="translate(0 414.302)" fill="#209ff3" font-size="328" font-family="Merriweather-Bold, Merriweather" font-weight="700"><tspan x="0" y="0">Supermat ca</tspan></text>
+        <rect id="Retângulo_2" data-name="Retângulo 2" width="39.917" height="303.522" rx="4" transform="translate(1624.904 25.966) rotate(58)" fill="#209ff3"/>
+        <rect id="Retângulo_1" data-name="Retângulo 1" width="50.223" height="392.134" rx="4" transform="translate(1621.596 27)" fill="#209ff3"/>
+      </g>
+    </g>
+  </g>
+</svg>

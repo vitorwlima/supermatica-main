@@ -6,7 +6,7 @@ import { toast } from 'react-toastify'
 
 import { Button, Input } from '../../components'
 import { Container, LoginSection, LogoSection } from './styles'
-import logo from '../../assets/logo.png'
+import logo from '../../assets/logo.svg'
 import { getValidationErrors } from '../../utils'
 import api from '../../services/api'
 import { setAccessToken } from '../../AuthenticationToken'

@@ -7,7 +7,7 @@ import * as Yup from 'yup'
 
 import { Button, Input } from '../../components'
 import { CheckInput, Container, RegisterSection, LogoSection } from './styles'
-import logo from '../../assets/logo.png'
+import logo from '../../assets/logo.svg'
 import { getValidationErrors } from '../../utils'
 import api from '../../services/api'
 

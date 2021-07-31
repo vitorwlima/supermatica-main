@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { Container } from './styles'
-import logo from '../../assets/logo.png'
+import logo from '../../assets/logo.svg'
 import { ContaIcon, ContatoIcon, ConteudosIcon, FormulasIcon, SidebarIcon, SimuladosIcon } from './styles'
 import { Button, MenuButton } from '../'
 import { Link } from 'react-router-dom'
