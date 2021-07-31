@@ -6,17 +6,21 @@ import * as Yup from 'yup'
 import { Button, TextArea, Wrapper } from '../../components'
 import { Container } from './styles'
 import { getValidationErrors } from '../../utils'
+import api from '../../services/api'
+import { toast } from 'react-toastify'
+import { getAccessToken } from '../../AuthenticationToken'
 
 interface IFormData {
-  teste: string
+  message: string
 }
 
 const Contato = () => {
   const formRef = useRef<FormHandles>(null)
 
   const breadCrumbs = [{ label: 'Contato' }]
+  api.defaults.headers['Authorization'] = `Bearer ${getAccessToken()}`
 
-  const handleSubmit: SubmitHandler<IFormData> = async data => {
+  const handleSubmit: SubmitHandler<IFormData> = async (data, { reset }) => {
     try {
       formRef.current?.setErrors({})
 
@@ -25,6 +29,20 @@ const Contato = () => {
       })
 
       await schema.validate(data, { abortEarly: false })
+
+      await api.post('/contact', { message: data.message })
+
+      toast.success('Sua mensagem foi enviada com sucesso!', {
+        position: 'top-right',
+        autoClose: 8000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      })
+
+      setTimeout(reset, 1000)
     } catch (error) {
       if (error instanceof Yup.ValidationError) {
         const errors = getValidationErrors(error)
@@ -32,6 +50,18 @@ const Contato = () => {
         formRef.current?.setErrors(errors)
 
         return
+      } else {
+        const errorMessage =
+          (error && error.response && error.response.data && error.response.data.error) || 'Ocorreu um erro.'
+        toast.error(errorMessage, {
+          position: 'top-right',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        })
       }
     }
   }
