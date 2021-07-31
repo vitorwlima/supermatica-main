@@ -26,6 +26,32 @@ const Account = () => {
 
   api.defaults.headers['Authorization'] = `Bearer ${getAccessToken()}`
 
+  const handleChangePassword = async () => {
+    try {
+      await api.post('/password-change')
+
+      toast.success('Email enviado com sucesso!', {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      })
+    } catch (error) {
+      toast.error('Ocorreu um erro.', {
+        position: 'top-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      })
+    }
+  }
+
   const handleLogout = useCallback(async () => {
     try {
       await api.get('/logout')
@@ -93,7 +119,9 @@ const Account = () => {
         </Form>
         <div className='passwordWrapper'>
           <p>Deseja alterar sua senha? Um email será enviado à você com o passo a passo necessário.</p>
-          <Button variant='nobackground'>Alterar senha</Button>
+          <Button variant='nobackground' onClick={handleChangePassword}>
+            Alterar senha
+          </Button>
         </div>
         <div className='logout'>
           <Button variant='nobackground' onClick={handleLogout}>

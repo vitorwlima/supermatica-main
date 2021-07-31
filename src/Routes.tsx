@@ -24,6 +24,10 @@ const routesConfig = [
     component: lazy(() => import('./views/AccountConfirm')),
   },
   {
+    path: '/alterar-senha/:token',
+    component: lazy(() => import('./views/ChangePassword')),
+  },
+  {
     guard: AuthGuard,
     path: '/conta',
     component: lazy(() => import('./views/Account')),
