@@ -1,6 +1,6 @@
 import React, { Fragment, lazy, Suspense } from 'react'
 import { Route, Switch, BrowserRouter, Redirect } from 'react-router-dom'
-import { AuthGuard, GuestGuard, Loader } from './components'
+import { AdminGuard, AuthGuard, GuestGuard, Loader } from './components'
 
 const routesConfig = [
   {
@@ -56,6 +56,21 @@ const routesConfig = [
     guard: AuthGuard,
     path: '/conteudos/:slug/:id',
     component: lazy(() => import('./views/Exercise')),
+  },
+  {
+    guard: AdminGuard,
+    path: '/admin',
+    component: lazy(() => import('./views/HomeAdmin')),
+  },
+  {
+    guard: AdminGuard,
+    path: '/admin/:slug',
+    component: lazy(() => import('./views/AdminExerciseList')),
+  },
+  {
+    guard: AdminGuard,
+    path: '/admin/:slug/:id',
+    component: lazy(() => import('./views/AdminExerciseEdit')),
   },
   {
     path: '/404',

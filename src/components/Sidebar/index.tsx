@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
-import { Container } from './styles'
+import { AdminIcon, Container } from './styles'
 import logo from '../../assets/logo.svg'
 import { ContaIcon, ContatoIcon, ConteudosIcon, FormulasIcon, SidebarIcon, SimuladosIcon } from './styles'
 import { Button, MenuButton } from '../'
 import { Link } from 'react-router-dom'
+import { useAuth } from '../../hooks/UseAuth'
 
 export const Sidebar = () => {
   const [isSidebarHidden, setIsSidebarHidden] = useState(true)
+  const { user } = useAuth()
 
   const handleSidebarInteraction = () => {
     setIsSidebarHidden(!isSidebarHidden)
@@ -48,6 +50,14 @@ export const Sidebar = () => {
               Conta
             </MenuButton>
           </div>
+          {user?.admin && (
+            <div style={{ marginTop: '24px' }}>
+              <MenuButton path='/admin' setIsSidebarHidden={handleSidebarInteraction}>
+                <AdminIcon />
+                Admin
+              </MenuButton>
+            </div>
+          )}
         </div>
       </div>
     </Container>

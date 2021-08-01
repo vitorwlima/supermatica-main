@@ -10,14 +10,19 @@ interface IExerciseCardProps {
   alreadySolved?: boolean
   slug: string
   id: string
+  isAdmin?: boolean
 }
 
-export const ExerciseCard = ({ exercise, tags, alreadySolved, slug, id }: IExerciseCardProps) => {
+export const ExerciseCard = ({ exercise, tags, alreadySolved, slug, id, isAdmin }: IExerciseCardProps) => {
   const history = useHistory()
 
   const handleRedirect = useCallback(() => {
+    if (isAdmin) {
+      return history.push(`/admin/${slug}/${id}`)
+    }
+
     history.push(`/conteudos/${slug}/${id}`)
-  }, [history, slug, id])
+  }, [history, slug, id, isAdmin])
 
   return (
     <Container onClick={handleRedirect}>

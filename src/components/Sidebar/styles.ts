@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import colors from '../../styles/colors'
 import { FaFlask, FaCalculator, FaBook, FaPhone, FaUser, FaBars } from 'react-icons/fa'
+import { GrUserAdmin } from 'react-icons/gr'
 import { deviceMaxWidth } from '../../styles/devices'
 
 interface IContainerProps {
@@ -84,6 +85,7 @@ export const FormulasIcon = styled(FaCalculator)``
 export const SimuladosIcon = styled(FaBook)``
 export const ContatoIcon = styled(FaPhone)``
 export const ContaIcon = styled(FaUser)``
+export const AdminIcon = styled(GrUserAdmin)``
 
 export const SidebarIcon = styled(FaBars)`
   fill: ${colors.dark};

@@ -8,14 +8,19 @@ interface ISubjectCardProps {
   subject: string
   exercises: number
   slug: string
+  isAdmin?: boolean
 }
 
-export const SubjectCard = ({ subject, exercises, slug }: ISubjectCardProps) => {
+export const SubjectCard = ({ subject, exercises, slug, isAdmin }: ISubjectCardProps) => {
   const history = useHistory()
 
   const handleRedirect = useCallback(() => {
+    if (isAdmin) {
+      return history.push(`/admin/${slug}`)
+    }
+
     history.push(`/conteudos/${slug}`)
-  }, [history, slug])
+  }, [history, slug, isAdmin])
 
   return (
     <Container onClick={handleRedirect}>
