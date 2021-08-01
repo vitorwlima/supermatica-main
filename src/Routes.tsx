@@ -28,6 +28,16 @@ const routesConfig = [
     component: lazy(() => import('./views/ChangePassword')),
   },
   {
+    guard: GuestGuard,
+    path: '/esqueci-senha',
+    component: lazy(() => import('./views/ForgotPassword')),
+  },
+  {
+    guard: GuestGuard,
+    path: '/esqueci-senha/:token',
+    component: lazy(() => import('./views/ChangeForgottenPassword')),
+  },
+  {
     guard: AuthGuard,
     path: '/conta',
     component: lazy(() => import('./views/Account')),

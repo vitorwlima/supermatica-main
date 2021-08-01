@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import React, { useCallback, useRef } from 'react'
 import { Form } from '@unform/web'
 import { SubmitHandler, FormHandles } from '@unform/core'
 import * as Yup from 'yup'
@@ -22,6 +22,10 @@ const Login = () => {
   const formRef = useRef<FormHandles>(null)
   const history = useHistory()
   const { setUser } = useAuth()
+
+  const handleForgotPassword = useCallback(() => {
+    history.push('/esqueci-senha')
+  }, [history])
 
   const handleLogin: SubmitHandler<IFormData> = async formData => {
     try {
@@ -66,7 +70,7 @@ const Login = () => {
           <Input name='email' type='text' label='Insira seu e-mail:' />
           <Input name='password' type='password' label='Insira sua senha:' />
           <Button type='submit'>ENTRAR</Button>
-          <Button variant='nobackground' className='forgotPasswordBtn' type='button'>
+          <Button variant='nobackground' className='forgotPasswordBtn' type='button' onClick={handleForgotPassword}>
             Esqueci a senha
           </Button>
           <div className='registerSection'>
