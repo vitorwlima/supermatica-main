@@ -1,10 +1,9 @@
 import styled from 'styled-components'
 
 export const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-
-  button {
-    margin-bottom: 2rem;
+  div {
+    button {
+      margin-top: 2rem;
+    }
   }
 `

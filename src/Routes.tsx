@@ -64,8 +64,18 @@ const routesConfig = [
   },
   {
     guard: AdminGuard,
+    path: '/admin/new',
+    component: lazy(() => import('./views/AdminConteudo')),
+  },
+  {
+    guard: AdminGuard,
     path: '/admin/:slug',
     component: lazy(() => import('./views/AdminExerciseList')),
+  },
+  {
+    guard: AdminGuard,
+    path: '/admin/:slug/new',
+    component: lazy(() => import('./views/AdminExerciseCreate')),
   },
   {
     guard: AdminGuard,

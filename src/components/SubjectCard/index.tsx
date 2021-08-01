@@ -26,7 +26,10 @@ export const SubjectCard = ({ subject, exercises, slug, isAdmin }: ISubjectCardP
     <Container onClick={handleRedirect}>
       <div>
         <h2>{subject}</h2>
-        <span>{exercises} Exercícios</span>
+        <span>
+          {exercises}
+          {exercises === 1 ? ' Exercício' : ' Exercícios'}
+        </span>
       </div>
       <div>
         <FaChevronRight />

@@ -26,7 +26,10 @@ export const Container = styled.div`
     margin-top: 2rem;
   }
 
-  .buttons {
+  .button {
+    align-self: flex-start;
+    width: fit-content;
+    margin-top: 1rem;
     margin-bottom: 2rem;
   }
 `
@@ -56,23 +59,6 @@ export const CorrectSelector = styled.div<ICorrectSelectorProps>`
   &:hover {
     div {
       border: 1.5px solid ${colors.primary};
-    }
-  }
-`
-
-export const ButtonsWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 1rem;
-
-  div:last-child {
-    button {
-      background-color: ${colors.warning};
-
-      &:hover {
-        background-color: ${colors.warningSecondary};
-      }
     }
   }
 `

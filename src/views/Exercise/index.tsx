@@ -19,19 +19,20 @@ const Exercise = () => {
 
   const alternatives = [
     {
-      alternative: 'O CURSO DOS MÓDULOSO CURSO DOS MÓDULOSO CURSO DOS MÓDULOS O CURSO DOS MÓDULOSO CURSO DOS MÓDULOS',
+      alternativeText:
+        'O CURSO DOS MÓDULOSO CURSO DOS MÓDULOSO CURSO DOS MÓDULOS O CURSO DOS MÓDULOSO CURSO DOS MÓDULOS',
       isCorrect: false,
       _id: '1',
     },
-    { alternative: '2', isCorrect: true, _id: '2' },
-    { alternative: '3', isCorrect: false, _id: '3' },
+    { alternativeText: '2', isCorrect: true, _id: '2' },
+    { alternativeText: '3', isCorrect: false, _id: '3' },
     {
-      alternative:
+      alternativeText:
         'O CURSO DOS MÓDULOSO CURSO DOS MÓDUL OSO CURSO DOS MÓD ULO SO CURSO DOS MÓDULOSO CURSO DOS M Ó D U LOSO CURSO DOS MÓDULO SO CURSO DOS MÓD ULOSO CURSO DOS MÓDULOSO CURSO DOS MÓDULOSO CURSO DOS MÓDULOSO CURSO DOS MÓDULO SO CURSO DOS MÓDULOSO CURSO DOS MÓDULOSO CURSO DOS MÓDULOS',
       isCorrect: false,
       _id: '4',
     },
-    { alternative: '5', isCorrect: false, _id: '5' },
+    { alternativeText: '5', isCorrect: false, _id: '5' },
   ]
 
   const resolution = 'https://player.vimeo.com/video/556343179'

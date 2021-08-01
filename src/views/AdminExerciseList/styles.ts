@@ -6,7 +6,7 @@ export const Container = styled.div`
 
   div:first-child {
     align-self: flex-end;
-    margin-bottom: 1rem;
+    padding-bottom: 1rem;
     padding-right: 1rem;
   }
 `

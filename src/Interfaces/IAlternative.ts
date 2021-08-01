@@ -1,5 +1,5 @@
 export interface IAlternative {
   _id: string
-  alternative: string
+  alternativeText: string
   isCorrect: boolean
 }

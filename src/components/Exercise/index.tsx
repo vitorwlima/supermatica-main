@@ -16,7 +16,7 @@ export const Exercise = ({ question, alternatives, resolution }: IExerciseProps)
   const [showResolution, setShowResolution] = useState(false)
 
   const handleFinishQuestion = () => {
-    const alternative = alternatives.find(alternative => alternative.alternative === selectedAlternative)
+    const alternative = alternatives.find(alternative => alternative.alternativeText === selectedAlternative)
     if (alternative?.isCorrect) {
       setAlternativeStatus('correct')
     } else {
@@ -36,13 +36,13 @@ export const Exercise = ({ question, alternatives, resolution }: IExerciseProps)
         {alternatives.map((alt, index) => (
           <Alternative
             key={alt._id}
-            onClick={alternativeStatus === 'initial' ? () => setSelectedAlternative(alt.alternative) : () => {}}
-            isSelected={alt.alternative === selectedAlternative}
+            onClick={alternativeStatus === 'initial' ? () => setSelectedAlternative(alt.alternativeText) : () => {}}
+            isSelected={alt.alternativeText === selectedAlternative}
             isCorrectAndFinished={
-              (alternativeStatus === 'correct' && alt.alternative === selectedAlternative) ||
+              (alternativeStatus === 'correct' && alt.alternativeText === selectedAlternative) ||
               (alternativeStatus === 'incorrect' && showResolution && alt.isCorrect)
             }
-            isIncorrectAndSelected={alternativeStatus === 'incorrect' && selectedAlternative === alt.alternative}
+            isIncorrectAndSelected={alternativeStatus === 'incorrect' && selectedAlternative === alt.alternativeText}
           >
             <div className='circleToMark'></div>
             <span className='alternativeLetter'>
@@ -52,7 +52,7 @@ export const Exercise = ({ question, alternatives, resolution }: IExerciseProps)
               {index === 3 && 'd)'}
               {index === 4 && 'e)'}
             </span>
-            <span>{alt.alternative}</span>
+            <span>{alt.alternativeText}</span>
           </Alternative>
         ))}
       </div>
