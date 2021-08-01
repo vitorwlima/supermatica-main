@@ -22,7 +22,7 @@ interface IParams {
 
 const ChangePassword = () => {
   const formRef = useRef<FormHandles>(null)
-  const [stateChange, setStateChange] = useState(false)
+  const stateChange = useState(false)
   const { token }: IParams = useParams()
   const history = useHistory()
 
@@ -80,7 +80,7 @@ const ChangePassword = () => {
       <Header />
       <main>
         <Form onSubmit={handleChangePassword} ref={formRef}>
-          <Input name='password' type='password' label='Insira sua nova senha:' onChange={() => setStateChange(true)} />
+          <Input name='password' type='password' label='Insira sua nova senha:' onChange={() => stateChange[1](true)} />
           <Input name='passwordConfirmation' type='password' label='Confirme sua senha:' />
           <Button type='submit'>Alterar</Button>
         </Form>

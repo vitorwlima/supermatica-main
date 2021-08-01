@@ -1,6 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useState } from 'react'
 import { useParams } from 'react-router-dom'
+import { getAccessToken } from '../../AuthenticationToken'
 import { Wrapper, Exercise as ExerciseComponent } from '../../components'
+import { IQuestion, ISubject } from '../../interfaces'
+import api from '../../services/api'
 import { Container } from './styles'
 
 interface IParams {
@@ -10,53 +14,39 @@ interface IParams {
 
 const Exercise = () => {
   const { slug, id }: IParams = useParams()
+  const [question, setQuestion] = useState<IQuestion | null>(null)
+  const [subject, setSubject] = useState<ISubject | null>(null)
+
+  api.defaults.headers['Authorization'] = `Bearer ${getAccessToken()}`
 
   const breadCrumbs = [
     { label: 'Conteúdos', path: '/conteudos' },
-    { label: 'Matemática Básica', path: '/conteudos/matematica-basica' },
-    { label: 'UFRGS (2020)...' },
+    { label: subject?.subjectText || 'Conteúdo', path: `/conteudos/${slug}` },
+    { label: question?.questionText.substr(0, 10) || 'Exercício' },
   ]
 
-  const alternatives = [
-    {
-      alternativeText:
-        'O CURSO DOS MÓDULOSO CURSO DOS MÓDULOSO CURSO DOS MÓDULOS O CURSO DOS MÓDULOSO CURSO DOS MÓDULOS',
-      isCorrect: false,
-      _id: '1',
-    },
-    { alternativeText: '2', isCorrect: true, _id: '2' },
-    { alternativeText: '3', isCorrect: false, _id: '3' },
-    {
-      alternativeText:
-        'O CURSO DOS MÓDULOSO CURSO DOS MÓDUL OSO CURSO DOS MÓD ULO SO CURSO DOS MÓDULOSO CURSO DOS M Ó D U LOSO CURSO DOS MÓDULO SO CURSO DOS MÓD ULOSO CURSO DOS MÓDULOSO CURSO DOS MÓDULOSO CURSO DOS MÓDULOSO CURSO DOS MÓDULO SO CURSO DOS MÓDULOSO CURSO DOS MÓDULOSO CURSO DOS MÓDULOS',
-      isCorrect: false,
-      _id: '4',
-    },
-    { alternativeText: '5', isCorrect: false, _id: '5' },
-  ]
+  useEffect(() => {
+    const getQuestion = async () => {
+      const { data } = await api.get(`/question/${id}`)
+      setQuestion(data)
+    }
 
-  const resolution = 'https://player.vimeo.com/video/556343179'
+    const getSubject = async () => {
+      const { data } = await api.get(`/subjects/${slug}`)
+      setSubject(data)
+    }
+
+    getSubject()
+    getQuestion()
+  }, [id, slug])
 
   return (
     <Wrapper breadCrumbs={breadCrumbs}>
       <Container>
         <ExerciseComponent
-          question='UFRGS (2020) - A concentração de alguns medicamentos no organismo está relacionada com a meia
--vida,
-ou seja, o tempo necessário para que a
- quantidade inicial do medicamento no
-organismo seja reduzida pela metade.
-Considere que a meia
--vida de determinado
-medicamento é de 6 horas. Sabendo que um
-paciente ingeriu 120 mg desse medicamento
-às 10 horas, assinale a alternativa que
-representa a melhor aproximação para a
-concentração desse medicamento, no
-organismo desse paciente, às 16 horas do dia
-seguinte.'
-          alternatives={alternatives}
-          resolution={resolution}
+          question={question?.questionText || ''}
+          alternatives={question?.alternatives || []}
+          resolution={question?.resolution || ''}
         />
       </Container>
     </Wrapper>
