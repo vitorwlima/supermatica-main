@@ -27,7 +27,12 @@ const Conteudos = () => {
     <Wrapper breadCrumbs={breadCrumbs}>
       <Container>
         {subjects.map(subject => (
-          <SubjectCard subject={subject.subjectText} exercises={subject.questions.length} slug={subject.slug} />
+          <SubjectCard
+            key={subject._id}
+            subject={subject.subjectText}
+            exercises={subject.questions.length}
+            slug={subject.slug}
+          />
         ))}
       </Container>
     </Wrapper>

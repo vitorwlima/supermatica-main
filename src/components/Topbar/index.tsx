@@ -35,10 +35,12 @@ export const Topbar = ({ children, breadCrumbs }: ITopbarProps) => {
     <Container>
       {children}
       <div className='breadCrumbs'>
-        {breadCrumbs?.map(crumb => (
-          <Button variant='nobackground' onClick={() => handleRedirect(crumb.path || '')}>
-            {crumb.label} <FaChevronRight />
-          </Button>
+        {breadCrumbs?.map((crumb, i) => (
+          <React.Fragment key={i}>
+            <Button variant='nobackground' onClick={() => handleRedirect(crumb.path || '')}>
+              {crumb.label} <FaChevronRight />
+            </Button>
+          </React.Fragment>
         ))}
       </div>
       <Button variant='nobackground' onClick={handleRedirectAccount} className='button-account'>

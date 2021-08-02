@@ -39,6 +39,7 @@ const AdminExerciseList = () => {
           {subject?.questions.length ? (
             subject?.questions.map(question => (
               <ExerciseCard
+                key={question._id}
                 exercise={question.questionText.substr(0, 10)}
                 slug={slug}
                 id={question._id}
