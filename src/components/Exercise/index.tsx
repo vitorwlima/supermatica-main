@@ -1,6 +1,10 @@
 import React, { useCallback, useState } from 'react'
+import { useParams } from 'react-router-dom'
 import { Button } from '../'
+import { getAccessToken } from '../../AuthenticationToken'
+import { useAuth } from '../../hooks/UseAuth'
 import { IAlternative } from '../../interfaces'
+import api from '../../services/api'
 import { Player } from '../Player'
 import { Alternative, Container } from './styles'
 
@@ -10,18 +14,35 @@ interface IExerciseProps {
   resolution: string
 }
 
+interface IParams {
+  id: string
+}
+
 export const Exercise = ({ question, alternatives, resolution }: IExerciseProps) => {
+  const { id }: IParams = useParams()
+  const { user, getUser } = useAuth()
+
+  api.defaults.headers['Authorization'] = `Bearer ${getAccessToken()}`
+
   const [selectedAlternative, setSelectedAlternative] = useState('')
   const [alternativeStatus, setAlternativeStatus] = useState<'initial' | 'correct' | 'incorrect'>('initial')
   const [showResolution, setShowResolution] = useState(false)
 
-  const handleFinishQuestion = () => {
+  const handleFinishQuestion = async () => {
     const alternative = alternatives.find(alternative => alternative.alternativeText === selectedAlternative)
     if (alternative?.isCorrect) {
       setAlternativeStatus('correct')
+      if (!user?.answeredQuestions.some(answered => answered.questionId === id)) {
+        await api.post('/question-answer', { questionId: id, isCorrect: true })
+      }
     } else {
       setAlternativeStatus('incorrect')
+      if (!user?.answeredQuestions.some(answered => answered.questionId === id)) {
+        await api.post('/question-answer', { questionId: id, isCorrect: false })
+      }
     }
+
+    getUser()
   }
 
   const handleTryAgain = useCallback(() => {

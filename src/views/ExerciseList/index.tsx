@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { getAccessToken } from '../../AuthenticationToken'
 import { ExerciseCard, Wrapper } from '../../components'
+import { useAuth } from '../../hooks/UseAuth'
 import { IQuestion } from '../../interfaces'
 import api from '../../services/api'
 import { Container } from './styles'
@@ -14,6 +15,7 @@ interface IParams {
 
 const ExerciseList = () => {
   const { slug }: IParams = useParams()
+  const { user } = useAuth()
   const [questions, setQuestions] = useState<IQuestion[]>([])
 
   const breadCrumbs = [{ label: 'Conteúdos', path: '/conteudos' }, { label: 'Matemática Básica' }]
@@ -41,7 +43,9 @@ const ExerciseList = () => {
             slug={slug}
             id={question._id}
             tags={question.tags}
-            alreadySolved
+            alreadySolved={user?.answeredQuestions.some(
+              answeredQuestion => answeredQuestion.questionId === question._id
+            )}
           />
         ))}
       </Container>
