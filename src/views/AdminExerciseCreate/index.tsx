@@ -20,6 +20,7 @@ interface IParams {
 interface IFormData {
   questionText: string
   resolution: string
+  tags: string
   firstAlternative: string
   secondAlternative: string
   thirdAlternative: string
@@ -62,6 +63,7 @@ const AdminExerciseCreate = () => {
         thirdAlternative: Yup.string().required('Insira a alternativa.'),
         fourthAlternative: Yup.string().required('Insira a alternativa.'),
         fifthAlternative: Yup.string().required('Insira a alternativa.'),
+        tags: Yup.string().required('Insira as tags.'),
       })
 
       await schema.validate(formData, { abortEarly: false })
@@ -69,6 +71,7 @@ const AdminExerciseCreate = () => {
       const { data } = await api.post('/question', {
         questionText: formData.questionText,
         resolution: formData.resolution,
+        tags: formData.tags.split(','),
         subjectId: subject?._id,
       })
 
@@ -138,6 +141,9 @@ const AdminExerciseCreate = () => {
           </div>
           <div className='resolution'>
             <Input name='resolution' label='Insira o link da resolução:' />
+          </div>
+          <div className='tags'>
+            <Input name='tags' label='Insira as tags (separadas por vírgula):' />
           </div>
           <div className='alternatives'>
             <div className='alternative'>

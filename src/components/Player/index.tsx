@@ -115,11 +115,6 @@ export const Player = ({ url }: IPlayerProps) => {
     }
   }, [containerRef])
 
-  useEffect(
-    () => console.log(currentQuality === 'Automático' ? url : `${url}?quality=${currentQuality}`),
-    [currentQuality, url]
-  )
-
   return (
     <Container
       isPlaying={isPlaying}

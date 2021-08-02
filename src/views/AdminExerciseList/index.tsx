@@ -42,7 +42,7 @@ const AdminExerciseList = () => {
                 exercise={question.questionText.substr(0, 10)}
                 slug={slug}
                 id={question._id}
-                tags={['Produto notável', 'Cálculo exponencial']}
+                tags={question.tags}
                 isAdmin
               />
             ))

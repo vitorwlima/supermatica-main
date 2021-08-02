@@ -27,6 +27,7 @@ interface IFormData {
   thirdAlternative: string
   fourthAlternative: string
   fifthAlternative: string
+  tags: string
 }
 
 const AdminExerciseEdit = () => {
@@ -116,6 +117,7 @@ const AdminExerciseEdit = () => {
         thirdAlternative: Yup.string().required('Insira a alternativa.'),
         fourthAlternative: Yup.string().required('Insira a alternativa.'),
         fifthAlternative: Yup.string().required('Insira a alternativa.'),
+        tags: Yup.string().required('Insira suas tags.'),
       })
 
       await schema.validate(formData, { abortEarly: false })
@@ -123,6 +125,7 @@ const AdminExerciseEdit = () => {
       await api.put(`/question/${id}`, {
         questionText: formData.questionText,
         resolution: formData.resolution,
+        tags: formData.tags.split(','),
       })
 
       if (question) {
@@ -198,6 +201,13 @@ const AdminExerciseEdit = () => {
           </div>
           <div className='resolution'>
             <Input name='resolution' label='Insira o link da resolução:' defaultValue={question?.resolution} />
+          </div>
+          <div className='tags'>
+            <Input
+              name='tags'
+              label='Insira as tags (separadas por vírgula):'
+              defaultValue={question?.tags.join(',')}
+            />
           </div>
           <div className='alternatives'>
             <div className='alternative'>
