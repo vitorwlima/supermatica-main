@@ -7,7 +7,7 @@ interface ButtonProps {
   disabled?: boolean
   type?: 'button' | 'submit' | 'reset' | undefined
   className?: string
-  path: string
+  path?: string
   setIsSidebarHidden: () => void
 }
 
@@ -16,21 +16,30 @@ export const MenuButton = ({ children, disabled, type, className, path, setIsSid
   const history = useHistory()
 
   useEffect(() => {
-    if (window.location.pathname === path) {
-      setIsActive(true)
+    if (path) {
+      if (
+        (window.location.pathname.includes(path) &&
+          (window.location.pathname.startsWith('/conteudos') || window.location.pathname.startsWith('/admin'))) ||
+        window.location.pathname === path
+      ) {
+        setIsActive(true)
+      }
     }
   }, [path])
 
   const handleRedirect = () => {
-    history.push(path)
-    setIsSidebarHidden()
+    if (path) {
+      history.push(path)
+      setIsSidebarHidden()
+    }
   }
 
   return (
-    <Container isActive={isActive}>
+    <Container isActive={isActive} isClickable={!!path}>
       <button onClick={handleRedirect} disabled={disabled} type={type} className={className}>
         {children}
       </button>
+      {!path && <span className='soon'>Em breve</span>}
     </Container>
   )
 }

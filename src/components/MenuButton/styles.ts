@@ -3,12 +3,14 @@ import colors from '../../styles/colors'
 
 interface IContainerProps {
   isActive: boolean
+  isClickable: boolean
 }
 
 export const Container = styled.div<IContainerProps>`
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 
   button {
     cursor: pointer;
@@ -21,13 +23,22 @@ export const Container = styled.div<IContainerProps>`
     width: 100%;
     font-size: 1.25rem;
     font-weight: 700;
+    cursor: ${props => !props.isClickable && 'default'};
 
     svg {
       margin-right: 1em;
     }
 
     &:hover {
-      color: ${colors.secondary};
+      color: ${props => props.isClickable && colors.secondary};
     }
+  }
+
+  .soon {
+    font-size: 0.75rem;
+    position: absolute;
+    bottom: 10px;
+    right: 53px;
+    color: ${colors.secondary};
   }
 `

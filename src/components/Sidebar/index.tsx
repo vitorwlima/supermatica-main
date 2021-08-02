@@ -31,11 +31,11 @@ export const Sidebar = () => {
               <ConteudosIcon />
               Conteúdos
             </MenuButton>
-            <MenuButton path='/formulas' setIsSidebarHidden={handleSidebarInteraction}>
+            <MenuButton setIsSidebarHidden={handleSidebarInteraction}>
               <FormulasIcon />
               Fórmulas
             </MenuButton>
-            <MenuButton path='/simulados' setIsSidebarHidden={handleSidebarInteraction}>
+            <MenuButton setIsSidebarHidden={handleSidebarInteraction}>
               <SimuladosIcon />
               Simulados
             </MenuButton>
